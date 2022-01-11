@@ -1,7 +1,7 @@
 # sig-OSCourse
 
 #### Description
-This reposiroty will provide the content of openEuler OS Course.
+This repository provides the content of openEuler OS Course.
 
 #### Software Architecture
 Software architecture description
