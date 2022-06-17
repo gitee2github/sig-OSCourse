@@ -1,0 +1,5 @@
+hello server
+this is client
+test network
+communication ok
+hello world
