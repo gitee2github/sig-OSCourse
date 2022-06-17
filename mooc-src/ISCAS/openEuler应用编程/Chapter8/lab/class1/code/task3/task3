@@ -1,0 +1,9 @@
+
+Lua: Error during loading:
+[string "/usr/share/wireshark/init.lua"]:45: dofile has been disabled
+要对其进行修改，终端运行
+sudo gedit /usr/share/wireshark/init.lua
+倒数第二行改为--dofile(DATA_DIR.."console.lua")
+3.启动软件
+终端运行：sudo wireshark
+

@@ -1,0 +1,74 @@
+1   #!/usr/bin/python
+2  
+3   import os
+4  
+5   file_list=os.listdir("./data/")
+6
+7   apps = ["evince","xpdf"]
+
+8   fuzz_output = "fuzz.pdf"
+9
+10  FuzzFactor = 20
+11  num_tests = 200
+12
+13  import math
+14  import random
+15  import string
+16  import subprocess
+17  from subprocess import Popen, PIPE
+18  import time
+19  f = 0
+
+20  #if len(file_list)>100:
+21  #    random.shuffle(file_list)
+22  #    file_list = file_list[0:100]
+23
+24  for file_choice in file_list:
+25      f += 1
+26      os.system("echo "+str(f) + " of " + str(len(file_list))+" > ./counter") 
+27      for i in range(num_tests):
+28          os.system("chmod 666 " + fuzz_output)
+29
+30          buf = bytearray(open("./data/" + file_choice, 'rb').read())
+31        
+32          numwrites = random.randrange(math.ceil((float(len(buf)) / FuzzFactor))) + 1
+33        
+34          for j in range(numwrites):            
+35              rbyte = random.randrange(256)
+36              rn = random.randrange(len(buf))
+37              buf[rn] = "%c" % (rbyte)
+38            
+39          open(fuzz_output, 'wb').write(buf)
+40        
+41          os.system("chmod 444 " + fuzz_output)
+42        
+43          for app in apps:
+44              print app+" - "+ fuzz_output
+45              process = subprocess.Popen([app, fuzz_output])
+46              processPID = process.pid
+47
+48              time.sleep(1)
+49           
+50              crashed = process.poll()
+51              if not crashed:
+52                  try:
+53                      process.terminate()
+54                  except OSError:
+55                     print "Process self-terminated."
+56                    
+57              p0 = subprocess.Popen(["dmesg"], stdout=PIPE)
+58              p1 = subprocess.Popen(["tail"], stdin=p0.stdout, stdout=PIPE)
+59              p2 = subprocess.Popen(["grep", str(processPID)], stdin=p1.stdout, stdout=PIPE)
+60              p0.stdout.close()    
+61              p1.stdout.close()
+62              output = p2.communicate()[0]
+64            
+65              if len(output) > 0:
+66                  print "Success - a crash!!!"
+67                  timestamp = time.time()
+68                  os.system("dmesg | grep " + str(processPID) + " >> " + str(timestamp) + ".log")
+69                  os.system("cp fuzz.pdf ./crashPDF/" + str(timestamp) + ".pdf")
+70            
+71              terminated = process.poll()
+72              if not terminated:
+73                  os.system("pkill "+app)

@@ -1,0 +1,110 @@
+
+ 任务一
+#include<iostream>  
+using namespace std;  
+class A{  
+public:  
+        A()  
+        {  
+            data=new char[10];  
+        }  
+        ~A()  
+        {  
+            delete [] data;  
+        }  
+private:  
+        char *data;  
+};  
+class B:public A  
+{  
+public:  
+    B()  
+    {  
+            dat=new char[10];  
+    }  
+    ~B()  
+    {  
+            delete [] dat;  
+    }  
+private:  
+    char *dat;  
+};  
+int main()  
+{  
+    A *ma=new B;  
+    delete ma;  
+}  
+
+任务二：
+#include <stdio.h>
+void printStar(){
+	int i,j;
+	int count = 0;
+	printf("\n");
+	for(i=0; i<6; i++){
+		for(j=0; j<11; j++){
+			if((i>j) || (10-j)<i){
+				printf(" ");
+			}else{
+				fflush(stdout);
+				printf("*");	
+				count++;
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
+int main(){
+	
+	printStar();
+
+	return 0;
+}
+
+任务三：
+
+ typedef struct
+{
+char* data;
+int key;
+}item;
+item array[] ={
+{"bill",3},
+{"neil",4},
+{"john",2}
+{“rick”,5},
+{“alex”,1}
+};
+
+
+void sort(item *a,int n)
+{
+int i=0,j=0;
+int s=1;
+for(;i<n&&s!=0;i++)
+    {
+        s=0;
+        for(j=0;j<n;j++)
+            {
+               if(a[j].key>a[j+1].key)
+                    {
+                       item t=a[j];
+                       a[j]=a[j+1];
+                        a[j+1]=t;
+                         s++;
+                      }
+               }
+          n--;
+         }
+
+}
+
+     
+int main()
+{
+sort(array,5);
+}
+
+

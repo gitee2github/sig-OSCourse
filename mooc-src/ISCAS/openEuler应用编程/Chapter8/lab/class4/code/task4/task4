@@ -1,0 +1,8 @@
+结果查找与输出：
+52  ……
+53  if len(output) > 0:
+54    print "Success - a crash!!!"
+55    timestamp = time.time()
+56    os.system("dmesg | grep " + str(processPID) + " >> " + str(timestamp) + ".log")
+57    os.system("cp fuzz.pdf ./crashPDF/" + str(timestamp) + ".pdf")
+

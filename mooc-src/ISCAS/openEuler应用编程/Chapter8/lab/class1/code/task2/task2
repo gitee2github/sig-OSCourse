@@ -1,0 +1,21 @@
+tcpdump -S -nn -vvv -i lo port 6888
+tcpdump -S -nn -vvv -i lo port 6888
+tcpdump: listening on lo, link-type EN10MB (Ethernet), capture size 65535 bytes
+19:30:52.508292 IP (tos 0x0, ttl 64, id 29646, offset 0, flags [DF], proto TCP (6), length 60)
+    127.0.0.1.41832 > 127.0.0.1.6888: Flags [S], cksum 0xfe30 (incorrect -> 0x10f4), seq 1603092946, win 43690, options [mss 65495,sackOK,TS val 40841756 ecr 0,nop,wscale 7], length 0
+19:30:52.508302 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 60)
+    127.0.0.1.6888 > 127.0.0.1.41832: Flags [S.], cksum 0xfe30 (incorrect -> 0xf4b6), seq 3653963221, ack 1603092947, win 43690, options [mss 65495,sackOK,TS val 40841756 ecr 40841756,nop,wscale 7], length 0
+19:30:52.508309 IP (tos 0x0, ttl 64, id 29647, offset 0, flags [DF], proto TCP (6), length 52)
+    127.0.0.1.41832 > 127.0.0.1.6888: Flags [.], cksum 0xfe28 (incorrect -> 0xc6fb), seq 1603092947, ack 3653963222, win 342, options [nop,nop,TS val 40841756 ecr 40841756], length 0
+19:31:32.374786 IP (tos 0x0, ttl 64, id 29648, offset 0, flags [DF], proto TCP (6), length 58)
+    127.0.0.1.41832 > 127.0.0.1.6888: Flags [P.], cksum 0xfe2e (incorrect -> 0x5c23), seq 1603092947:1603092953, ack 3653963222, win 342, options [nop,nop,TS val 40851722 ecr 40841756], length 6
+19:31:32.374840 IP (tos 0x0, ttl 64, id 16330, offset 0, flags [DF], proto TCP (6), length 52)
+    127.0.0.1.6888 > 127.0.0.1.41832: Flags [.], cksum 0xfe28 (incorrect -> 0x7919), seq 3653963222, ack 1603092953, win 342, options [nop,nop,TS val 40851722 ecr 40851722], length 0
+19:31:32.374866 IP (tos 0x0, ttl 64, id 16331, offset 0, flags [DF], proto TCP (6), length 58)
+    127.0.0.1.6888 > 127.0.0.1.41832: Flags [P.], cksum 0xfe2e (incorrect -> 0x352f), seq 3653963222:3653963228, ack 1603092953, win 342, options [nop,nop,TS val 40851722 ecr 40851722], length 6
+19:31:32.374894 IP (tos 0x0, ttl 64, id 29649, offset 0, flags [DF], proto TCP (6), length 52)
+    127.0.0.1.41832 > 127.0.0.1.6888: Flags [.], cksum 0xfe28 (incorrect -> 0x7913), seq 1603092953, ack 3653963228, win 342, options [nop,nop,TS val 40851722 ecr 40851722], length 0
+^C
+7 packets captured
+14 packets received by filter
+0 packets dropped by kernel
