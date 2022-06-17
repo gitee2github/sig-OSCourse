@@ -1,0 +1,10 @@
+#! /usr/bin/env stap
+
+probe kernel.function("*@net/*.c").call {
+  if( execname() == "server" || execname() == "client" )
+  	printf ("%s -> %s\n", thread_indent(1), ppfunc())
+}
+probe kernel.function("*@net/*.c").return {
+  if( execname() == "server" || execname() == "client" )
+  	printf ("%s <- %s\n", thread_indent(-1), ppfunc())
+}
