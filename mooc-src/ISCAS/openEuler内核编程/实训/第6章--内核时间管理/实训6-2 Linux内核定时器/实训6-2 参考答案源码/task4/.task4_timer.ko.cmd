@@ -1,0 +1,1 @@
+cmd_/root/kernel_hw/ch6/6-2/task4/task4_timer.ko := ld -r  -EL  -maarch64linux -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /root/kernel_hw/ch6/6-2/task4/task4_timer.ko /root/kernel_hw/ch6/6-2/task4/task4_timer.o /root/kernel_hw/ch6/6-2/task4/task4_timer.mod.o ;  true

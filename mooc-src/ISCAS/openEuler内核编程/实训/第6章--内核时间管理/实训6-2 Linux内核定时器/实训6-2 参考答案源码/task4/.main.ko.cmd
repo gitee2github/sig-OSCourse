@@ -1,0 +1,1 @@
+cmd_/root/kernel_hw/ch5/5-1/task4/main.ko := ld -r  -EL  -maarch64linux -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /root/kernel_hw/ch5/5-1/task4/main.ko /root/kernel_hw/ch5/5-1/task4/main.o /root/kernel_hw/ch5/5-1/task4/main.mod.o ;  true
