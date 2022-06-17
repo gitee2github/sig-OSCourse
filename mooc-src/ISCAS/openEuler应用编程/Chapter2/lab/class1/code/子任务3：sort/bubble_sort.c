@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 10
+
+void bubble_sort(int num[]);
+int main()
+{
+	int i;
+	int number[N];
+	FILE *fp;
+	if((fp = fopen("./sort.txt","r"))==NULL){
+		printf("can't open.\n");
+		exit(0);
+	}
+	for(i=0;i<N;i++){
+		fscanf(fp,"%d,",&number[i]);
+	}
+	fclose(fp);
+	bubble_sort(number);
+	fp = fopen("./result.txt","w");
+	for(i=0;i<N;i++){
+		fprintf(fp,"%d,",number[i]);
+	}
+}
+
+void bubble_sort(int num[])
+{
+	int i,j,t;
+        int flag=0;
+	for(i=0;i<N-1;i++){
+         	for(j=0;j<N-i-1;j++){
+                        flag=0;
+			if(num[j]>num[j+1]){
+				t=num[j];
+				num[j]=num[j+1];
+				num[j+1]=t;
+                                flag=1;
+		        	}
+	        	}
+               if(flag==0){ break; }
+              }
+       
+}
+
+

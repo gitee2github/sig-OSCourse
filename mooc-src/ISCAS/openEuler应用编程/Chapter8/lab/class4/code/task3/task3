@@ -1,0 +1,22 @@
+判断是否崩溃：
+38  ……
+39  crashed = process.poll()
+40  if not crashed:
+41  try:
+42    process.terminate()
+43  except OSError:
+44    print "Process self-terminated."
+
+检测崩溃效果：
+46  p0 = subprocess.Popen(["dmesg"], stdout=PIPE)
+47  p1 = subprocess.Popen(["tail"], stdin=p0.stdout, stdout=PIPE)
+48  p2 = subprocess.Popen(["grep", str(processPID)], stdin=p1.stdout, stdout=PIPE)
+49  p0.stdout.close()    
+50  p1.stdout.close()
+51  output = p2.communicate()[0]
+
+模糊测试例子关闭：
+58  ……
+59  terminated = process.poll()
+60  if not terminated:
+61    os.system("pkill "+app)

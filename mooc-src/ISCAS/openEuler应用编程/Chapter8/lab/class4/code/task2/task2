@@ -1,0 +1,17 @@
+列出模糊测试例：
+3  import os
+4 
+5  file_list=os.listdir("./data/")
+...
+27  for file_choice in file_list:
+28      f += 1
+29      os.system("echo "+str(f) + " of " + str(len(file_list))+" > ./counter")
+
+文件修改生成测试例：
+31
+32  for app in apps:
+33    print app+" - "+ fuzz_output
+34    process = subprocess.Popen([app, fuzz_output])
+35    processPID = process.pid
+36
+37    time.sleep(1)

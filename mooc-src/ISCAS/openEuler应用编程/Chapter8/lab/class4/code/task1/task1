@@ -1,0 +1,25 @@
+参数处理：
+17    if (argc < 2) {
+18      printf ("[-] Error: not enough arguments\n");
+19      return (1);
+20    } else {
+21      file_size = atol (argv[1]);
+22      file_offset = atol (argv[2]);
+23      file_value = atol (argv[3]);
+24      name = argv[4];
+25    }
+
+文件修改生成测试例：
+42    // mutate file
+43    printf ("[+] file offset: 0x%08x (value: 0x%08x)\n", file_offset, file_value);
+44    fflush (stdout);
+45    p[file_offset] = file_value;
+
+自动化生成测试例：
+18  while [ $cnt -lt $num ]
+19  do
+20      cp ./iscas.pdf ./iscas_$cnt.pdf
+21      ./fuzz $filesize $off $val ./iscas_$cnt.pdf
+22      let "off+=1"
+23      let "cnt+=1"
+24  done
